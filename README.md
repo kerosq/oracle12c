@@ -1,7 +1,7 @@
 # Oracle Database con Docker
 
 Instrucciones y fichero de configuración para arrancar una base de
-datos [Oracle Database Express Edition](https://www.oracle.com/es/database/technologies/appdev/xe.html) en local
+datos [Oracle Database Free](https://www.oracle.com/es/database/free/) en local
 mediante [Docker](https://www.docker.com).
 
 ## Prerrequisitos
