@@ -9,8 +9,6 @@ else
 $(error No se encuentra el fichero .env)
 endif
 
-ARCH := $(shell docker context use default && docker run --rm alpine uname -m)
-
 help: _header
 	${info }
 	@echo Opciones:
@@ -46,21 +44,13 @@ _start_command:
 	@docker compose up -d --remove-orphans
 
 start:
-ifneq ("$(ARCH)", "default aarch64")
 	@$(MAKE) -f $(THIS_FILE) _start_command
-else
-	@$(MAKE) -f $(THIS_FILE) _colima-start _context-colima _start_command _context-docker-desktop
-endif
 
 _stop_command:
 	@docker compose stop
 
 stop:
-ifneq ("$(ARCH)", "default aarch64")
 	@$(MAKE) -f $(THIS_FILE) _stop_command
-else
-	@$(MAKE) -f $(THIS_FILE) _context-colima _stop_command _colima-stop
-endif
 
 restart: stop start
 
@@ -68,42 +58,22 @@ _ps_command:
 	@docker ps
 
 ps:
-ifneq ("$(ARCH)", "default aarch64")
 	@$(MAKE) -f $(THIS_FILE) _ps_command
-else
-	@$(MAKE) -f $(THIS_FILE) _context-colima _ps_command _context-docker-desktop
-endif
 
 _logs_command:
 	@docker compose logs server
 
 logs:
-ifneq ("$(ARCH)", "default aarch64")
 	@$(MAKE) -f $(THIS_FILE) _logs_command
-else
-	@$(MAKE) -f $(THIS_FILE) _context-colima _logs_command _context-docker-desktop
-endif
 
 _stats_command:
 	@docker stats
 
 stats:
-ifneq ("$(ARCH)", "default aarch64")
 	@$(MAKE) -f $(THIS_FILE) _stats_command
-else
-	@$(MAKE) -f $(THIS_FILE) _context-colima _stats_command _context-docker-desktop
-endif
 
 _clean_command:
 	@docker compose down -v --remove-orphans
 
 clean:
-ifneq ("$(ARCH)", "default aarch64")
 	@$(MAKE) -f $(THIS_FILE) _clean_command
-else
-	@-$(MAKE) -f $(THIS_FILE) _context-colima
-	@-$(MAKE) -f $(THIS_FILE) _clean_command
-	@-$(MAKE) -f $(THIS_FILE) _colima-delete
-	@-$(MAKE) -f $(THIS_FILE) _colima-stop
-	@-$(MAKE) -f $(THIS_FILE) _context-docker-desktop
-endif

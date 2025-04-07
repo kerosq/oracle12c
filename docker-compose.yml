@@ -1,14 +1,13 @@
 services:
 
   server:
-    image: gvenzl/${ORACLE_REPO}:${ORACLE_VERSION}
-    platform: linux/amd64
+    image: gvenzl/${ORACLE_REPO:-oracle-free}:${ORACLE_VERSION}
     environment:
       - ORACLE_PASSWORD=${ORACLE_PASSWORD}
     volumes:
       - data:/opt/oracle/oradata
     ports:
-      - ${ORACLE_PORT}:1521
+      - ${ORACLE_PORT:-1521}:1521
     healthcheck:
       test: healthcheck.sh
       interval: 10s

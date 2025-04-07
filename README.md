@@ -23,18 +23,11 @@ mediante [Docker](https://www.docker.com).
    scoop install make
    ```
 
-3. En Macs con procesador Apple Silicon (M1, M2...), instalar [Colima](https://github.com/abiosoft/colima)
-   usando [Homebrew](https://brew.sh):
-
-   ```shell
-   brew install colima
-   ```
-
-4. Instalar [Oracle SQL Developer](https://www.oracle.com/es/database/technologies/appdev/sql-developer.html) (requiere
+3. Instalar [Oracle SQL Developer](https://www.oracle.com/es/database/technologies/appdev/sql-developer.html) (requiere
    iniciar sesión con una cuenta de Oracle) o [JetBrains DataGrip](https://www.jetbrains.com/es-es/datagrip/) (requiere
    una suscripción).
 
-5. Clonar este repositorio:
+4. Clonar este repositorio:
 
    ```shell
    git clone https://github.com/ijaureguialzo/oracle-docker.git
@@ -67,7 +60,7 @@ mediante [Docker](https://www.docker.com).
    > :warning: Es recomendable cambiar las contraseñas por defecto.
 
    La versión de Oracle a utilizar se puede configurar en el fichero `.env` y se corresponde con las etiquetas
-   disponibles [aquí](https://hub.docker.com/r/gvenzl/oracle-xe) y [aquí](https://hub.docker.com/r/gvenzl/oracle-free).
+   disponibles [aquí](https://hub.docker.com/r/gvenzl/oracle-free).
 
 3. Arrancar el servidor:
 
@@ -85,15 +78,15 @@ mediante [Docker](https://www.docker.com).
 
 ## Datos de conexión
 
-| Clave            | Valor                                                           |
-|------------------|-----------------------------------------------------------------|
-| Usuario          | `SYS`                                                           |
-| Contraseña       | La configurada en el fichero `.env`                             |
-| Tipo de conexión | Básico                                                          |
-| Rol              | `SYSDBA`                                                        |
-| Host             | `localhost`                                                     |
-| Puerto           | `1521`                                                          |
-| SID              | `XE` (hasta la versión 21) o `FREE` (a partir de la versión 23) |
+| Clave            | Valor                               |
+|------------------|-------------------------------------|
+| Usuario          | `SYS`                               |
+| Contraseña       | La configurada en el fichero `.env` |
+| Tipo de conexión | Básico                              |
+| Rol              | `SYSDBA`                            |
+| Host             | `localhost`                         |
+| Puerto           | `1521`                              |
+| SID              | `FREE`                              |
 
 ## Script para crear usuario
 
@@ -105,7 +98,3 @@ que se puede adaptar y ejecutar estando conectado como `SYS` al servidor.
 ### Desde SQL Developer
 
 ![](sqldeveloper.png)
-
-### Desde DataGrip
-
-![](datagrip.png)
